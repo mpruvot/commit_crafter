@@ -8,9 +8,26 @@ from commitcrafter.gpt_integration import generate_commit_names_using_chat
 
 
 class CommitCrafter:
-    def __init__(self, path: str = os.getcwd(), compare_to: str = None):
+    def __init__(self, path: str = os.getcwd(), compare_to: str = None):  # enum?
         self.path = path
         self.compare_to = compare_to
+
+    def generate(self) -> list[str] | str:
+        """
+        Generate commit names based on the latest git diff. Returns a list of commit names.
+        Raises:
+            ValueError: If the OpenAI API key is not found in the environment variables.
+            EmptyDiffError: If no changes are found in the latest commit.
+        """
+
+        diff = self._get_latest_diff()
+
+        if not diff:
+            raise EmptyDiffError
+        try:
+            return generate_commit_names_using_chat(diff)
+        except ValueError:
+            raise
 
     def _get_latest_diff(self) -> str:
         """
@@ -27,24 +44,3 @@ class CommitCrafter:
         diff = hcommit.diff(self.compare_to, create_patch=True)
         diff_text = "".join([d.diff.decode() if d.diff else "" for d in diff])
         return diff_text
-
-    def generate(self) -> list[str] | str:
-        """
-        Generate commit names based on the latest git diff. Returns a list of commit names.
-        Raises:
-            ValueError: If the OpenAI API key is not found in the environment variables.
-            EmptyDiffError: If no changes are found in the latest commit.
-        """
-        try:
-            diff = self._get_latest_diff()
-        except ValueError as e:
-            return str(e)
-
-        if diff:
-            try:
-                commit_names = generate_commit_names_using_chat(diff)
-                return commit_names
-            except ValueError as e:
-                raise e
-        else:
-            raise EmptyDiffError
