@@ -47,4 +47,4 @@ class CommitCrafter:
             except ValueError as e:
                 raise e
         else:
-            raise EmptyDiffError(" :x: No changes found in the latest commit :x:")
+            raise EmptyDiffError

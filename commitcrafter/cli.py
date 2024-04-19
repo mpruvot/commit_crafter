@@ -19,8 +19,8 @@ def generate():
             f"[bold red]{e}[/bold red] : Please set the COMMITCRAFT_OPENAI_API_KEY environment variable.\n\n"
             f"=> export COMMITCRAFT_OPENAI_API_KEY='your-api-key' <="
         )
-    except EmptyDiffError as e:
-        print(e)
+    except EmptyDiffError:
+        print(":man_facepalming: [bold]No changes found in the latest commit[/bold] :man_facepalming: ")
 
 
 if __name__ == "__main__":
