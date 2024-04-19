@@ -21,8 +21,8 @@ class CommitCrafter:
         """
         try:
             repo = Repo(self.path, search_parent_directories=True)
-        except InvalidGitRepositoryError:
-            raise ValueError(f" :x: No git repository found at {self.path} :x:")
+        except InvalidGitRepositoryError as e:
+            raise e
         hcommit = repo.head.commit
         diff = hcommit.diff(self.compare_to, create_patch=True)
         diff_text = "".join([d.diff.decode() if d.diff else "" for d in diff])

@@ -1,4 +1,7 @@
+import os
+
 import typer
+from git import InvalidGitRepositoryError
 from rich import print
 
 from commitcrafter.commitcrafter import CommitCrafter
@@ -21,6 +24,8 @@ def generate():
         )
     except EmptyDiffError:
         print(":man_facepalming: [bold]No changes found in the latest commit[/bold] :man_facepalming: ")
+    except InvalidGitRepositoryError:
+        print(f":neutral_face: [bold]No git repository found at {os.getcwd()}[bold] :neutral_face:")
 
 
 if __name__ == "__main__":
