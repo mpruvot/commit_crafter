@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "commitcrafter"
-version = "0.1.0"
+version = "0.1.2"
 description = ""
 authors = ["mpruvot <marius.pruvot@outlook.fr>"]
 readme = "README.md"
