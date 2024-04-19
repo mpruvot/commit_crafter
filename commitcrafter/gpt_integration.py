@@ -7,10 +7,7 @@ def get_openai_client() -> OpenAI:
     """Get an OpenAI client with the API key from the environment variables."""
     api_key = os.getenv("COMMITCRAFT_OPENAI_API_KEY")
     if not api_key:
-        raise ValueError(
-            "OpenAI API key not set.-> export COMMITCRAFT_OPENAI_API_KEY=<your_api_key>"
-            " or add it to you shell profile."
-        )
+        raise ValueError("OpenAI API key not found in environment variables")
     return OpenAI(api_key=api_key)
 
 

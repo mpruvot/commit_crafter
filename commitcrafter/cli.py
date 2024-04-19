@@ -1,9 +1,8 @@
-import os
-
 import typer
+from rich import print
 
-from .git_tools import get_latest_diff
-from .gpt_integration import generate_commit_names_using_chat
+from commitcrafter.commitcrafter import CommitCrafter
+from commitcrafter.exceptions import EmptyDiffError
 
 app = typer.Typer()
 
@@ -11,16 +10,17 @@ app = typer.Typer()
 @app.command()
 def generate():
     """Generate commit names based on the latest git diff."""
-    diff = get_latest_diff(os.getcwd())
-    if diff:
-        try:
-            commit_names = generate_commit_names_using_chat(diff)
-            for name in commit_names:
-                typer.echo(name)
-        except ValueError as e:
-            typer.echo(str(e))
-    else:
-        typer.echo("No diff found or diff is empty.")
+    try:
+        commit_names = CommitCrafter().generate()
+        for name in commit_names:
+            print(name)
+    except ValueError as e:
+        print(
+            f"[bold red]{e}[/bold red] : Please set the COMMITCRAFT_OPENAI_API_KEY environment variable.\n\n"
+            f"=> export COMMITCRAFT_OPENAI_API_KEY='your-api-key' <="
+        )
+    except EmptyDiffError as e:
+        print(e)
 
 
 if __name__ == "__main__":
