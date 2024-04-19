@@ -2,8 +2,8 @@ import os
 
 import typer
 
-from git_tools import get_latest_diff
-from gpt_integration import generate_commit_names_using_chat
+from .git_tools import get_latest_diff
+from .gpt_integration import generate_commit_names_using_chat
 
 app = typer.Typer()
 
