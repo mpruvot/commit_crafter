@@ -1,3 +1,5 @@
+![demo](https://github.com/mpruvot/CommitCrafter/assets/132161864/e4cc60e5-b08d-4d11-a91f-f55c965f5d61)
+
 # CommitCrafter
 
 **CommitCrafter** is an AI-powered tool designed to enhance Git workflows by generating descriptive commit messages
