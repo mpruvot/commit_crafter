@@ -1,4 +1,5 @@
-![demo](https://github.com/mpruvot/CommitCrafter/assets/132161864/e4cc60e5-b08d-4d11-a91f-f55c965f5d61)
+![ezgif-4-30ae1a8a0a](https://github.com/mpruvot/CommitCrafter/assets/132161864/ced77a15-5f3b-4e31-9011-26fcbcdfc0ad)
+
 
 # CommitCrafter
 
