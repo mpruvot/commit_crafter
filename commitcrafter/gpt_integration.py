@@ -1,35 +1,27 @@
+from openai import OpenAI
+from commitcrafter.ai_client_repository import AIClientRepository
+from commitcrafter.ai_client_factory import get_client
 import os
 
-from openai import OpenAI
 
+class GPTClient(AIClientRepository[OpenAI]):
+    """OpenAI implementation of AI client repository."""
 
-def get_openai_client() -> OpenAI:
-    """Get an OpenAI client with the API key from the environment variables."""
-    api_key = os.getenv("COMMITCRAFT_OPENAI_API_KEY")
-    if not api_key:
-        raise ValueError("OpenAI API key not found in environment variables")
-    return OpenAI(api_key=api_key)
+    def __init__(self):
+        client = get_client(OpenAI, "COMMITCRAFT_OPENAI_API_KEY")
+        super().__init__(client)
 
+    def generate_commit_messages(self, diff: str, prompt: str) -> list[str]:
+        """Generate commit messages using the OpenAI API."""
+        messages = [
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": diff},
+        ]
 
-def generate_commit_names_using_chat(diff):
-    """Generate commit names using the chat endpoint of the OpenAI API."""
-    prompts_path = os.path.join(os.path.dirname(__file__), "prompt.txt")
+        response = self.client.chat.completions.create(
+            model=os.environ.get("GPT_MODEL", "gpt-3.5-turbo"),
+            messages=messages,
+            max_tokens=150,
+        )
 
-    client = get_openai_client()
-
-    with open(prompts_path, "r") as file:
-        prompt = file.read()
-
-    messages = [
-        {"role": "system", "content": prompt},
-        {"role": "user", "content": diff},
-    ]
-
-    response = client.chat.completions.create(
-        model=os.environ.get("GPT_MODEL", "gpt-3.5-turbo"),
-        messages=messages,
-        max_tokens=150,
-    )
-
-    commit_names = [response.choices[0].message.content.strip()]
-    return commit_names
+        return [response.choices[0].message.content.strip()]
