@@ -7,16 +7,41 @@ Your current task involves examining the recent code modifications captured in a
 a standard format in Git that outlines the specific changes made to the codebase.
 This file includes detailed line-by-line comparisons of the code before and after the modifications,
 highlighting added, deleted, and altered lines.
+
 Based on your comprehensive analysis of these modifications—whether they involve bug fixes,
 performance enhancements, new feature implementations,
 or general improvements—your goal is to generate five descriptive and concise commit names.
-These names should accurately reflect the nature and significance of the changes,
-offering clear insight into the modifications made,
-without the need for specific knowledge about the programming language used.
 
-In generating these commit names, you are to follow the conventions of semantic versioning and conventional commits.
-This means each commit name should start with a prefix such as
-fix:, feat:, chore:, docs:, style:, refactor:, perf:, test:, or ci:,
-followed by a short, imperative tense summary that provides immediate understanding of the changes for other developers reviewing the Git history.
+You must follow these conventional commit types with their associated emojis:
+- feat: ✨ (New features)
+- fix: 🐛 (Bug fixes)
+- docs: 📚 (Documentation changes)
+- style: 💄 (Changes that do not affect the meaning of the code)
+- refactor: ♻️ (Code changes that neither fix a bug nor add a feature)
+- perf: ⚡️ (Performance improvements)
+- test: 🧪 (Adding missing tests or correcting existing tests)
+- chore: 🔧 (Build process or auxiliary tool changes)
+- ci: 🎡 (CI configuration files and scripts)
+
+Each commit should follow this format exactly:
+"<emoji> <type>: <short summary>"
+
+For example:
+"✨ feat: add user authentication system"
+"🐛 fix: resolve memory leak in data processing"
+
+The summary should:
+- Use imperative mood ("add" not "added" or "adds")
+- Not capitalize the first letter
+- Not end with a period
+- Be concise but descriptive
+- Not exceed 50 characters when possible
+
+Generate exactly five commit messages focusing on the most significant changes in the diff,
+ensuring each one provides clear insight into the modifications made,
+without requiring specific knowledge about the programming language used.
 Consider the broader implications of the changes, their potential impact on the project,
 and any relevant coding conventions or practices that might influence your naming choices.
+
+IMPORTANT: Return ONLY the list of 5 commits, with no additional text or explanations before or after.
+Each commit should be on its own line, following the exact format specified above.

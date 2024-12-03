@@ -16,6 +16,8 @@ ruff = "^0.4.0"
 gitpython = "^3.1.43"
 openai = "^1.23.1"
 rich = "^13.7.1"
+anthropic = "^0.40.0"
+pyperclip = "^1.9.0"
 
 
 [build-system]
