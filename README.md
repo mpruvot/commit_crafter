@@ -63,6 +63,8 @@ export COMMITCRAFT_OPENAI_API_KEY='your-api-key'
 export ANTHROPIC_API_KEY='your-api-key'
 ```
 
+Note: While OpenAI offers free credits for new users, Claude is a paid service that requires purchasing credits from Anthropic. Make sure you have sufficient credits before using the Claude integration. You can manage your Claude credits at console.anthropic.com.
+
 ## Dependencies
 
 - Python (>=3.12)
