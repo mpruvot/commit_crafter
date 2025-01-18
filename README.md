@@ -1,6 +1,10 @@
 
 ![demo](https://github.com/user-attachments/assets/62ca9c47-e35a-4c2e-bbc0-0d19ee8b4df3)
 
+[![GitHub Repo](https://img.shields.io/github/stars/mpruvot/CommitCrafter?style=social)](https://github.com/mpruvot/CommitCrafter)
+[![GitHub Issues](https://img.shields.io/github/issues/mpruvot/CommitCrafter)](https://github.com/mpruvot/CommitCrafter/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/mpruvot/CommitCrafter)](https://github.com/mpruvot/CommitCrafter/pulls)
+
 # CommitCrafter 🎨
 
 Craft your commit messages while you focus on coding. CommitCrafter analyzes your git diff and generates meaningful, conventional commit messages.
