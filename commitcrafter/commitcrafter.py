@@ -66,5 +66,5 @@ class CommitCrafter:
             ) from e
 
         hcommit = repo.head.commit
-        diff = hcommit.diff(create_patch=True)
+        diff = hcommit.diff(None, create_patch=True)
         return "".join(d.diff.decode() if d.diff else "" for d in diff)
