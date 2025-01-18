@@ -1,3 +1,6 @@
+
+![demo](https://github.com/user-attachments/assets/62ca9c47-e35a-4c2e-bbc0-0d19ee8b4df3)
+
 # CommitCrafter 🎨
 
 Craft your commit messages while you focus on coding. CommitCrafter analyzes your git diff and generates meaningful, conventional commit messages.
