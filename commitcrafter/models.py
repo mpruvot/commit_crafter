@@ -18,15 +18,15 @@ class CommitType(StrEnum):
 
 
 COMMIT_EMOJIS = {
-    CommitType.FEAT: "✨ ",
-    CommitType.FIX: "🐛 ",
-    CommitType.DOCS: "📚 ",
-    CommitType.STYLE: "💄 ",
-    CommitType.REFACTOR: "♻️ ",
-    CommitType.PERF: "⚡️ ",
-    CommitType.TEST: "🧪 ",
-    CommitType.CHORE: "🔧 ",
-    CommitType.CI: "🎡 ",
+    CommitType.FEAT: "✨",
+    CommitType.FIX: "🐛",
+    CommitType.DOCS: "📚",
+    CommitType.STYLE: "💄",
+    CommitType.REFACTOR: "♻️",
+    CommitType.PERF: "⚡️",
+    CommitType.TEST: "🧪",
+    CommitType.CHORE: "🔧",
+    CommitType.CI: "🎡",
 }
 
 

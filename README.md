@@ -1,8 +1,8 @@
 ![ezgif-4-30ae1a8a0a](https://github.com/mpruvot/CommitCrafter/assets/132161864/ced77a15-5f3b-4e31-9011-26fcbcdfc0ad)
 
-# CommitCrafter
+# commit_crafter
 
-**CommitCrafter** is an AI-powered tool designed to enhance Git workflows by generating descriptive commit messages based on changes made within the repository. Using either OpenAI's GPT or Anthropic's Claude APIs, it provides a seamless way to create meaningful commit messages that accurately reflect the content of your updates.
+**commit_crafter** is an AI-powered tool designed to enhance Git workflows by generating descriptive commit messages based on changes made within the repository. Using either OpenAI's GPT or Anthropic's Claude APIs, it provides a seamless way to create meaningful commit messages that accurately reflect the content of your updates.
 
 ## What's New in 0.2.0 🎉
 
@@ -24,7 +24,7 @@
 ## Installation
 
 CommitCrafter requires Python 3.12 or newer. Install CommitCrafter globally with pipx to ensure it is available in any of your projects:
-
+ ### Installing with [pipx](https://pypa.github.io/pipx/)
 ```bash
 pipx install commitcrafter
 ```
