@@ -1,8 +1,6 @@
-![CommitCrafter Demo](https://github.com/mpruvot/CommitCrafter/assets/132161864/ced77a15-5f3b-4e31-9011-26fcbcdfc0ad)
-
 # CommitCrafter 🎨
 
-Let AI craft your commit messages while you focus on coding. CommitCrafter analyzes your git diff and generates meaningful, conventional commit messages.
+Craft your commit messages while you focus on coding. CommitCrafter analyzes your git diff and generates meaningful, conventional commit messages.
 
 ## ✨ What's Cool
 
@@ -75,3 +73,4 @@ MIT - Do whatever you want with it!
 - [Google Gemini](https://gemini.google.com/) - Google's LLM
 - [Mistral AI](https://mistral.ai/) - Open Source Models
 - [Ollama](https://github.com/jmorganca/ollama) - Local AI Runtime
+
