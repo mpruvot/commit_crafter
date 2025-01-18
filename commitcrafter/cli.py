@@ -1,6 +1,4 @@
 import os
-from typing import List
-from enum import Enum
 import typer
 from git import InvalidGitRepositoryError
 from rich import print
@@ -9,50 +7,14 @@ from rich.console import Console
 
 from commitcrafter.commitcrafter import CommitCrafter
 from commitcrafter.exceptions import EmptyDiffError
+from commitcrafter.models import CommitMessage, Agent, AI_MODEL_MAP
+import pyperclip
 
 app = typer.Typer()
 console = Console()
 
 
-class AIClient(str, Enum):
-    GPT = "gpt"
-    CLAUDE = "claude"
-
-
-class CommitType(str, Enum):
-    FEAT = "feat"
-    FIX = "fix"
-    DOCS = "docs"
-    STYLE = "style"
-    REFACTOR = "refactor"
-    PERF = "perf"
-    TEST = "test"
-    CHORE = "chore"
-    CI = "ci"
-
-
-def parse_commits(commit_text: str) -> List[str]:
-    """
-    Parse commits from the raw text response.
-
-    Args:
-        commit_text: Raw text containing commit messages
-
-    Returns:
-        List of parsed commit messages
-    """
-    lines = commit_text.strip().split("\n")
-    commits = []
-
-    for line in lines:
-        cleaned = line.lstrip("0123456789. ")
-        if cleaned and any(f"{type.value}:" in cleaned for type in CommitType):
-            commits.append(cleaned.strip())
-
-    return commits
-
-
-def select_commit(commits: list[str]) -> str | None:
+def select_commit(commits: list[CommitMessage]) -> CommitMessage | None:
     """
     Allow user to select a commit message interactively.
 
@@ -79,12 +41,10 @@ def select_commit(commits: list[str]) -> str | None:
     return commits[int(choice) - 1]
 
 
-def copy_to_clipboard(message: str) -> None:
+def copy_to_clipboard(message: CommitMessage) -> None:
     """Try to copy message to clipboard and notify user."""
     try:
-        import pyperclip
-
-        pyperclip.copy(message)
+        pyperclip.copy(str(message))
         console.print("\n✨ [green]Commit message copied to clipboard![/green]")
     except ImportError:
         console.print(f"\n✨ Selected commit message: [blue]{message}[/blue]")
@@ -92,37 +52,22 @@ def copy_to_clipboard(message: str) -> None:
 
 @app.command()
 def generate(
-    client: AIClient = typer.Option(
-        AIClient.GPT,
-        "--client",
-        "-c",
-        help="Choose AI Client to generate your commit message",
+    agent: Agent = typer.Option(
+        Agent.CLAUDE,
+        "--agent",
+        "-a",
+        help="Choose AI agent (claude/gpt/gemini/ollama/mistral)",
         case_sensitive=False,
     ),
 ) -> None:
     """Generate commit names based on the latest git diff."""
     try:
-        commit_crafter = CommitCrafter()
-        raw_commits = commit_crafter.generate(client=client.value)
-
-        # Handle different return types
-        commit_text = raw_commits[0] if isinstance(raw_commits, list) else raw_commits
-        commit_messages = parse_commits(commit_text)
-
-        if selected_commit := select_commit(commit_messages):
+        commits = CommitCrafter(ai_model=AI_MODEL_MAP[agent]).generate()
+        if selected_commit := select_commit(commits):
             copy_to_clipboard(selected_commit)
 
     except ValueError as e:
-        if client == AIClient.GPT:
-            console.print(
-                f"[bold red]{e}[/bold red]: Please set the COMMITCRAFT_OPENAI_API_KEY environment variable.\n\n"
-                f"export COMMITCRAFT_OPENAI_API_KEY='your-api-key'"
-            )
-        else:
-            console.print(
-                f"[bold red]Anthropic API key not found[/bold red]: Please set the ANTHROPIC_API_KEY environment variable.\n\n"
-                f"export ANTHROPIC_API_KEY='your-api-key'"
-            )
+        console.print(f"[bold red]{e}[/bold red]")
     except EmptyDiffError:
         console.print(
             "[bold yellow]No changes found in the latest commit[/bold yellow]"
@@ -131,6 +76,11 @@ def generate(
         console.print(
             f":neutral_face: [bold red]No git repository found at {os.getcwd()}[/bold red] :neutral_face:"
         )
+    except Exception as e:
+        console.print(
+            "[bold red]Oops, something went wrong & guess what? I've no idea what that is. So open an issue on GitHub and fix it.[/bold red]"
+        )
+        console.print(f"[bold red]{e}[/bold red]")
 
 
 if __name__ == "__main__":

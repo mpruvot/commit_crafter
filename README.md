@@ -1,79 +1,76 @@
-![demo](https://github.com/user-attachments/assets/854d0c91-881f-4e5e-b1a2-6a3a915d122f)
+# CommitCrafter 🎨
 
-# CommitCrafter
+Craft your commit messages while you focus on coding. CommitCrafter analyzes your git diff and generates meaningful, conventional commit messages.
 
-**CommitCrafter** is an AI-powered tool designed to enhance Git workflows by generating descriptive commit messages based on changes made within the repository. Using either OpenAI's GPT or Anthropic's Claude APIs, it provides a seamless way to create meaningful commit messages that accurately reflect the content of your updates.
+## ✨ What's Cool
 
-## What's New in 0.2.0 🎉
+- 🤖 **Multiple AI Brains**: Choose your favorite - GPT, Claude, Gemini, Mistral, or Ollama
+- 🎯 **Smart Selection**: Pick from multiple suggestions for the perfect commit message  
+- 📋 **Auto-Copy**: Selected message goes straight to your clipboard
+- 🎭 **Conventional Commits**: Proper formatting with emojis included
+- 🔌 **Just Works**: Zero config needed - works with any git repo
 
-- **New AI Provider**: Added support for Claude AI through Anthropic's API
-- **Interactive Selection**: Choose from multiple generated commit messages
-- **Clipboard Integration**: Selected commit messages are automatically copied
-- **Conventional Commits**: Added emoji support for different types of commits
-- **Command Options**: New `--client` flag to switch between GPT and Claude
-
-## Features
-
-- **Multiple AI Providers**: Choose between GPT and Claude AI models for generating commit messages
-- **Interactive Selection**: Select from multiple generated commit messages with an easy-to-use interface
-- **Clipboard Integration**: Automatically copy selected commit messages to your clipboard
-- **Conventional Commits**: Follows conventional commit format with appropriate emojis
-- **Easy Integration**: Directly integrates with your Git repositories to analyze recent diffs
-- **Customization Options**: Modify the AI prompts to better match your project's context and coding conventions
-
-## Installation
-
-CommitCrafter requires Python 3.12 or newer. Install CommitCrafter globally with pipx to ensure it is available in any of your projects:
+## 🚀 Quick Start
 
 ```bash
+# Install with pipx
 pipx install commitcrafter
+
+# Use it (in any git repository)
+commitcraft         # Uses Claude by default
+commitcraft -a gpt  # Or use GPT instead
 ```
 
-## Updating
-
-To update to the latest version:
+## 🎮 Choose Your Model
 
 ```bash
-pipx upgrade commitcrafter
+commitcraft -a claude   # Anthropic's Claude
+commitcraft -a gpt      # OpenAI's GPT
+commitcraft -a gemini   # Google's Gemini
+commitcraft -a mistral  # Mistral AI
+commitcraft -a ollama   # Local Ollama
 ```
 
-## Usage
+## 🔑 Setup
 
-To use CommitCrafter, navigate to your project directory and execute:
+You'll need an API key for your chosen model. Set it as an environment variable:
 
 ```bash
-# Use GPT (default)
-commitcraft
-
-# Use Claude
-commitcraft --client claude
-# or
-commitcraft -c claude
+# Pick the one you need:
+export ANTHROPIC_API_KEY='your-key'
+export OPENAI_API_KEY='your-key'
+export GEMINI_API_KEY='your-key'
+export MISTRAL_API_KEY='your-key'
+export OLLAMA_API_KEY='your-key'
 ```
 
-### Environment Setup
+## 📦 Requirements
 
-#### For OpenAI (GPT):
-```bash
-export COMMITCRAFT_OPENAI_API_KEY='your-api-key'
-```
+- Python 3.12+
+- A git repository
+- An API key for your chosen model
 
-#### For Anthropic (Claude):
-```bash
-export ANTHROPIC_API_KEY='your-api-key'
-```
+## 🤝 Contributing
 
-Note: While OpenAI offers free credits for new users, Claude is a paid service that requires purchasing credits from Anthropic. Make sure you have sufficient credits before using the Claude integration. You can manage your Claude credits at console.anthropic.com.
+Found a bug? Have an idea? PRs and issues are always welcome!
 
-## Dependencies
+## 📝 License
 
-- Python (>=3.12)
-- GitPython for repository interaction
-- Typer for command-line interfaces
-- Rich for formatting terminal outputs
-- Pyperclip for clipboard functionality
-- OpenAI and Anthropic libraries for AI integration
+MIT - Do whatever you want with it!
 
-## Contributing
+## 🔗 Useful Links
 
-Contributions are welcome! Please feel free to submit pull requests or open issues if you have suggestions for improvements.
+### 🛠️ Built With
+- [Pydantic-AI](https://github.com/pydantic/pydantic-ai) - Modern AI Agent Framework
+- [Typer](https://typer.tiangolo.com/) - Beautiful CLI Builder
+- [Rich](https://github.com/Textualize/rich) - Rich Terminal Output
+- [GitPython](https://github.com/gitpython-developers/GitPython) - Git Operations
+- [Pyperclip](https://github.com/asweigart/pyperclip) - Clipboard Management
+
+### 🤖 AI Providers
+- [Anthropic Claude](https://www.anthropic.com/) - Our Default Model
+- [OpenAI](https://openai.com/) - GPT Integration
+- [Google Gemini](https://gemini.google.com/) - Google's LLM
+- [Mistral AI](https://mistral.ai/) - Open Source Models
+- [Ollama](https://github.com/jmorganca/ollama) - Local AI Runtime
+
