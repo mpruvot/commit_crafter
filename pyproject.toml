@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "commitcrafter"
-version = "0.3.1"
+version = "0.3.2"
 description = "A CLI tool to generate commit messages based on git diffs using AI"
 authors = ["mpruvot <marius.pruvot@outlook.fr>"]
 readme = "README.md"
@@ -20,6 +20,10 @@ pyperclip = "^1.9.0"
 pydantic-ai = "^0.0.19"
 mypy = "^1.14.1"
 pre-commit = "^4.0.1"
+mkdocs = "^1.6.1"
+mkdocs-material = "^9.5.50"
+pymdown-extensions = "^10.14"
+mkdocs-dracula-theme = "^1.0.7"
 
 
 [build-system]

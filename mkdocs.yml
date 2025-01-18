@@ -1,0 +1,54 @@
+site_name: CommitCrafter
+site_description: AI-powered commit message generator
+repo_url: https://github.com/mpruvot/CommitCrafter
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: black
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - admonition
+  - footnotes
+  - attr_list
+  - md_in_html
+nav:
+  - Home: index.md
+  - User Guide:
+    - Installation: installation.md
+    - Quick Start: quickstart.md
+    - Configuration: configuration.md
+  - AI Models:
+    - Overview: models/index.md
+    - Claude: models/claude.md
+    - GPT: models/gpt.md
+    - Gemini: models/gemini.md
+    - Mistral: models/mistral.md
+    - Ollama: models/ollama.md
+  - Contributing: contributing.md
+  - Changelog: changelog.md
