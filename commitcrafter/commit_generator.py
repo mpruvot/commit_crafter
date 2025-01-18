@@ -35,13 +35,21 @@ class CommitGenerator:
         """Validate that the required API key is set."""
         provider = AIModel.get_provider(model)
         match provider:
-            case "openai" | "anthropic" | "google-gla" | "ollama" | "mistral":
+            case "openai" | "anthropic" | "ollama" | "mistral":
                 env_var = f"{provider.upper()}_API_KEY".replace("-", "_")
                 if not os.getenv(env_var):
                     raise ValueError(
                         f"{provider.title()} API key not found. Please set the {env_var} environment variable.\n"
                         f"export {env_var}='your-api-key'"
                     )
+            case "google-gla":
+                env_var = f"GEMINI_API_KEY"
+                if not os.getenv(env_var):
+                    raise ValueError(
+                        f"{provider.title()} API key not found. Please set the {env_var} environment variable.\n"
+                        f"export {env_var}='your-api-key'"
+                    )
+
             case _:
                 raise ValueError(f"Unknown model: {provider}")
 
